@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
+import { NgRedux, NgReduxModule} from 'ng2-redux';
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
 
 @NgModule({
   declarations: [
@@ -13,9 +15,14 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule, // new modules added here
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    NgReduxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE)
+  }
+}
