@@ -9,9 +9,12 @@ export const INITIAL_STATE: IAppState = {
 }
 
 export function rootReducer(state: IAppState, action) : IAppState {
-    switch(action) {
+    console.log(action);
+    console.log(state)
+    switch(action.type) {
         case INCREMENT:
             return { counter: state.counter + 1 }
     }
+    console.log("adad");
     return state;
 }
